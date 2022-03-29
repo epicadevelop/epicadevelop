@@ -1,0 +1,37 @@
+<p>
+  <mat-toolbar class="back-color font-color">
+    <img [src]="imagePath" class="logo">
+    <span>Epica - Emissão de Boletos</span>
+    <span class="espacamento-toolbar"></span>
+
+<!--
+      {{ user }}
+      <button mat-icon-button   (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+-->
+
+    <div>
+
+      {{ user }}
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn$ | async">
+        <mat-icon>account_circle </mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onLogout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Sair
+        </button>
+      </mat-menu>
+
+    </div>
+
+
+  </mat-toolbar>
+</p>
+
+<mat-card-content>
+  <router-outlet></router-outlet>
+</mat-card-content>

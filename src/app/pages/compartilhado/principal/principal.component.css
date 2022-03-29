@@ -1,0 +1,16 @@
+.espacamento-toolbar {
+    flex: 1 1 auto;
+ }
+
+ .logo {
+     max-width: 350px;     
+     max-height:250px;
+     width: auto;
+     height: auto;
+     margin: 0px 30px 0px 0;
+ }
+
+ .mat-icon {
+    float: center;
+    padding-right: 0px;
+ }
