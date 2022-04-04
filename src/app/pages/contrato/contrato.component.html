@@ -5,7 +5,7 @@
         <tr>
             <td>
                 <mat-form-field>                    
-                    <input   [readonly]="true"  matInput placeholder="aaaaaa"  [value]="contrato.proposta" >
+                    <input   [readonly]="true"  matInput placeholder="Contrato"  [value]="contrato.proposta" >
                 </mat-form-field>
 
             </td>
@@ -113,16 +113,72 @@
 
 <br>
 
-<fieldset id="FieldSet">
-    <legend style="color: blue;">Parcelas</legend>
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+
+
+<fieldset id="FieldSet" *ngIf="existeAcordo > 0"> 
+
+    <legend style="color: blue;">Parcelas de Acordo</legend>
+
+    <table mat-table [dataSource]="dataSourceAcordo" matSort class="mat-elevation-z2">
+
+        <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef>Código</th>
+            <td mat-cell *matCellDef="let row">{{row.codigo}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="proposta">
+            <th mat-header-cell *matHeaderCellDef>Contrato</th>
+            <td mat-cell *matCellDef="let row">{{row.proposta}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="parcela">
+            <th mat-header-cell *matHeaderCellDef>Parcela</th>
+            <td mat-cell *matCellDef="let row">{{ row.parcela }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="vencimento">
+            <th mat-header-cell *matHeaderCellDef>Vencimento</th>
+            <td mat-cell *matCellDef="let row">{{ row.vencimento }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="valorParcela">
+            <th mat-header-cell *matHeaderCellDef>Valor</th>
+            <td mat-cell *matCellDef="let row">{{ row.valorParcela }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="nossoNumero">
+            <th mat-header-cell *matHeaderCellDef>Nosso Número</th>
+            <td mat-cell *matCellDef="let row">{{row.nossoNumero}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Ação </th>
+            <td mat-cell *matCellDef="let row" >
+                 <button mat-raised-button mat-button color="primary"  (click)="gerarBoleto(row.codigo)"   >Gerar Boletos</button> </td>        
+          </ng-container>    
+    
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr [ngClass]="{'disabled' : row.enviado === true, erroEnvio : row.enviado === false }" mat-row
+            *matRowDef="let row; columns: colunas;"></tr>    
+    
+    </table>
+
+</fieldset>
+
+<br>
+
+<fieldset id="FieldSet">
+
+    <legend style="color: blue;">Parcelas de Taxas</legend>
+
+
+<table mat-table [dataSource]="dataSourceTaxa" matSort class="mat-elevation-z1">
 
     <ng-container matColumnDef="codigo">
         <th mat-header-cell *matHeaderCellDef>Código</th>
         <td mat-cell *matCellDef="let row">{{row.codigo}}</td>
     </ng-container>
-
 
     <ng-container matColumnDef="proposta">
         <th mat-header-cell *matHeaderCellDef>Contrato</th>
@@ -164,3 +220,4 @@
 </table>
 
 </fieldset>
+

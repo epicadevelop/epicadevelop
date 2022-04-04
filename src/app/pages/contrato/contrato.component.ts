@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Contrato } from '../../domain/model/contrato';
-import { Boleto } from '../../domain/model/boleto'
+import { Taxa } from '../../domain/model/taxa'
 import { ContratoService } from '../../services/contrato.service';
 import { SessionService } from '../../services/session.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Acordo } from 'src/app/domain/model/acordo';
 
 @Component({
   selector: 'app-contrato',
@@ -19,17 +20,19 @@ export class ContratoComponent implements OnInit {
   session!: SessionService;
   contrato: Contrato = {} as Contrato;
 
-  qtdeParcela: number = 0;
+  qtdeParcelaAtrazo: number = 0;
   seqBoleto: number = 0;
-
+  existeAcordo: number = 0;
 
   //private nfeEmitir: NfeEmitir[] = [];
 
-  boleto: Boleto[] = [];
+  taxa: Taxa[] = [];
+  acordo: Acordo[]=[];
 
   colunas = ['codigo' , 'proposta', 'parcela', 'vencimento', 'valorParcela', 'nossoNumero', 'actions'];
 
-  dataSource!: MatTableDataSource<Boleto>;
+  dataSourceTaxa!: MatTableDataSource<Taxa>;
+  dataSourceAcordo!: MatTableDataSource<Acordo>;
 
   constructor(private contratoService: ContratoService,
     private snackbar: MatSnackBar
@@ -38,8 +41,7 @@ export class ContratoComponent implements OnInit {
   ngOnInit(): void {
     this.getContratoinicio();
   }
-
-
+  
   /*  
   fillUpData() {
     this.formcontrato = this.fb.group({
@@ -59,24 +61,24 @@ export class ContratoComponent implements OnInit {
    });
   }
   */
-
+  
   canSend(param: number) {
-
-    let qtdPArcelas = this.qtdeParcela;
-    let result: boolean;
-
-    console.log('atrazo parcelas: ', qtdPArcelas);
-
-    if (qtdPArcelas == 1 && param == 1)
+  
+    let parcelaAtrazo = this.qtdeParcelaAtrazo;
+    let result: boolean; 
+    console.log('atrazo parcelas: ', parcelaAtrazo);
+  
+    if (parcelaAtrazo == 1 && param == 1 && this.existeAcordo < 1)
       result = false;
     else
       result = true;
-
+   
     console.log('resultado :   ', result);
-
+  
     return result;
-
+  
   }
+
 
   getContratoinicio() {
     let proposta = SessionService.getContrato();
@@ -86,10 +88,14 @@ export class ContratoComponent implements OnInit {
         next: (data: Contrato) => {
 
           if (data != null) {
-            this.contrato = data;
-            this.boleto = this.contrato.boleto;
-            this.dataSource = new MatTableDataSource(this.boleto);
-            this.qtdeParcela = this.contrato.qtdeParcAtrazo;
+              this.contrato = data;
+              this.taxa = this.contrato.taxa;
+              this.acordo = this.contrato.acordo;
+              this.dataSourceTaxa = new MatTableDataSource(this.taxa);
+              this.dataSourceAcordo = new MatTableDataSource(this.acordo);
+              this.qtdeParcelaAtrazo = this.contrato.qtdeParcAtrazo;
+              this.existeAcordo =  this.acordo.length;
+
           } else {
             let msg = "Contrato não localizado";
             this.snackbar.open(msg, "Fechar", { duration: 5000 })
@@ -111,6 +117,7 @@ export class ContratoComponent implements OnInit {
 
   }
 
+
   /*
   getContratoinicio() {
     
@@ -122,6 +129,6 @@ export class ContratoComponent implements OnInit {
         error: (err) =>{ let msg = "Contrato não localizado"; console.log(msg);}
       })
     }
-  */
+  */    
 
 }

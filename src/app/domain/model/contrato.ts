@@ -1,4 +1,5 @@
-import { Boleto } from "./boleto";
+import { Acordo } from "./acordo";
+import { Taxa } from "./taxa";
 
 export interface Contrato{
 
@@ -16,6 +17,7 @@ export interface Contrato{
     produto: string;
     qtdeGaveta: string;
     qtdeParcAtrazo: number;
-    boleto : Boleto[];
+    taxa : Taxa[];
+    acordo: Acordo[];
 
 }

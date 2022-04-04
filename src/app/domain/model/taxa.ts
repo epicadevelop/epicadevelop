@@ -1,4 +1,4 @@
-export interface Boleto{    
+export interface Taxa{    
 
     
     proposta: string;

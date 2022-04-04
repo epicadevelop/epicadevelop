@@ -6,6 +6,7 @@ table {
     color: black; 
     font-size: medium;
     font-weight: bold;        
+    padding: 0px;
   }
   
   td.mat-cell  {  
