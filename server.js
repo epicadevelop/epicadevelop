@@ -7,6 +7,7 @@ app.use(express.static(`${__dirname}/dist/${nomeApp}`));
 
 console.log("caminho : " , `${__dirname}/${nomeApp}`);
 console.log("caminho curto : " , `${nomeApp}`);
+console.log("POrta : ", process.env.PORT);
 
 app.get('/*', (req, res) => {
 res.sendFile(path.join(`${__dirname}/dist/${nomeApp}/index.html`));
