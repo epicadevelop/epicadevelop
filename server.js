@@ -4,7 +4,7 @@ const nomeApp = process.env.npm_package_name;
 const app = express();
 
 /*app.use(express.static(`${__dirname}/${nomeApp}`));*/
-app.use(express.static(`app/src`));
+app.use(express.static(`app/src/${nomeApp}`));
 
 console.log("caminho : " , `${__dirname}/${nomeApp}`);
 console.log("caminho curto : " , `${nomeApp}`);
