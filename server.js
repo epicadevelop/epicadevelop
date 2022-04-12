@@ -3,14 +3,18 @@ const path = require('path');
 const nomeApp = process.env.npm_package_name;
 const app = express();
 
-app.use(express.static(`${__dirname}/${nomeApp}`));
+/*app.use(express.static(`${__dirname}/${nomeApp}`));*/
+app.use(express.static(`app/src`));
 
 console.log("caminho : " , `${__dirname}/${nomeApp}`);
 console.log("caminho curto : " , `${nomeApp}`);
 console.log("Porta : ", process.env.PORT);
+console.log("novo caminho ",path.join(`app/src/index.html`));
 
 app.get('/*', (req, res) => {
-res.sendFile(path.join(`${__dirname}/${nomeApp}/index.html`));
+/*res.sendFile(path.join(`${__dirname}/${nomeApp}/index.html`));*/
+res.sendFile(path.join(`app/src/index.html`));
+
 });
 
 app.listen(process.env.PORT);
