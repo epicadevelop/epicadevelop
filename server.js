@@ -9,11 +9,11 @@ app.use(express.static(`app/src/${nomeApp}`));
 console.log("caminho : " , `${__dirname}/${nomeApp}`);
 console.log("caminho curto : " , `${nomeApp}`);
 console.log("Porta : ", process.env.PORT);
-console.log("novo caminho ",path.join(`app/src/index.html`));
+console.log("novo caminho ",path.join(`app/dist/index.html`));
 
 app.get('/*', (req, res) => {
 /*res.sendFile(path.join(`${__dirname}/${nomeApp}/index.html`));*/
-res.sendFile(path.join(`app/src/index.html`));
+res.sendFile(path.join(`app/dist/index.html`));
 
 });
 
