@@ -29,12 +29,12 @@ export class LoginService {
   logar(usuario: IUsuario): Observable<any> {
 
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({ 
+         'Content-Type': 'application/json'
+    })
     };
 
-    const encoded = btoa(usuario.contrato + ':' + usuario.cpfCnpj);    
-
-    console.log('httpOptions ==> ' , httpOptions);
+    const encoded = btoa(usuario.contrato + ':' + usuario.cpfCnpj);        
     return this._http.post(this.baseApiUrl + this.PATH, encoded, httpOptions);     
 
   }
