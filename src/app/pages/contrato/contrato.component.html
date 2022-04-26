@@ -35,13 +35,13 @@
         <tr>
             <td style="border: 10;">
                 <mat-form-field [style.width.px]=300>
-                    <input matInput placeholder="Tipo" [value]="contrato.produto">
+                    <input [readonly]="true" matInput placeholder="Tipo" [value]="contrato.produto">
                 </mat-form-field>
             </td>
 
             <td>
                 <mat-form-field [style.width.px]=80>
-                    <input matInput placeholder="QTDE GAVETAS"   [value]="contrato.qtdeGaveta">
+                    <input [readonly]="true"  matInput placeholder="QTDE GAVETAS"   [value]="contrato.qtdeGaveta">
                 </mat-form-field>
             </td>
 
@@ -96,7 +96,7 @@
                     <input  [readonly]="true"  matInput placeholder="DDD">
                 </mat-form-field>            
 
-                <mat-form-field [style.width.px]=100>
+                <mat-form-field [style.width.px]=200>
                     <input  [readonly]="true"  matInput placeholder="Telefone" [value]="contrato.fone" >
                 </mat-form-field>           
 
@@ -152,7 +152,7 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Ação </th>
             <td mat-cell *matCellDef="let row" >
-                 <button mat-raised-button mat-button color="primary"  (click)="gerarBoleto(row.codigo)"   >Gerar Boletos</button> </td>        
+                 <button mat-raised-button mat-button color="primary"  (click)="gerarBoleto(row.codigo + 'A')"   >Gerar Boletos</button> </td>        
           </ng-container>    
     
         <tr mat-header-row *matHeaderRowDef="colunas"></tr>
@@ -174,7 +174,7 @@
 
     <ng-container matColumnDef="codigo">
         <th mat-header-cell *matHeaderCellDef>Código</th>
-        <td mat-cell *matCellDef="let row">{{row.codigo}}</td>
+        <td mat-cell *matCellDef="let row">{{ row.codigo }}</td>
     </ng-container>
 
     <ng-container matColumnDef="proposta">
@@ -205,7 +205,7 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Ação </th>
         <td mat-cell *matCellDef="let row" >
-             <button mat-raised-button mat-button color="primary" [disabled]="canSend(row.sequencia)"  (click)="gerarBoleto(row.codigo)"   >Gerar Boletos</button> </td>        
+             <button mat-raised-button mat-button color="primary" [disabled]="canSend(row.sequencia)"  (click)="gerarBoleto(row.codigo + 'T')"   >Gerar Boletos</button> </td>        
       </ng-container>
 
 
@@ -213,8 +213,5 @@
     <tr [ngClass]="{'disabled' : row.enviado === true, erroEnvio : row.enviado === false }" mat-row
         *matRowDef="let row; columns: colunas;"></tr>
 
-
 </table>
-
 </fieldset>
-

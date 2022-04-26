@@ -7,6 +7,7 @@ import { ContratoService } from '../../services/contrato.service';
 import { SessionService } from '../../services/session.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Acordo } from 'src/app/domain/model/acordo';
+import { BoletoCripto } from 'src/app/domain/model/boletoCripto';
 
 @Component({
   selector: 'app-contrato',
@@ -16,13 +17,21 @@ import { Acordo } from 'src/app/domain/model/acordo';
 
 export class ContratoComponent implements OnInit {
 
+ 
+  
+   formCripto: HTMLFormElement = document.querySelector('#formItau')!;
+  
+
+
   formcontrato!: FormGroup;
   session!: SessionService;
   contrato: Contrato = {} as Contrato;
+  boletoCripto!: BoletoCripto;  
 
   qtdeParcelaAtrazo: number = 0;
   seqBoleto: number = 0;
   existeAcordo: number = 0;
+  criptoItau!: string;
 
   //private nfeEmitir: NfeEmitir[] = [];
 
@@ -63,7 +72,7 @@ export class ContratoComponent implements OnInit {
   */
   
   canSend(param: number) {
-  
+  /*
     let parcelaAtrazo = this.qtdeParcelaAtrazo;
     let result: boolean; 
     console.log('atrazo parcelas: ', parcelaAtrazo);
@@ -76,14 +85,16 @@ export class ContratoComponent implements OnInit {
     console.log('resultado :   ', result);
   
     return result;
+    */
   
   }
 
 
   getContratoinicio() {
-    let proposta = SessionService.getContrato();
 
-    this.contratoService.getContrato(proposta)
+    let proposta = SessionService.getContratoAtual();
+
+    this.contratoService.getContratos(proposta)
       .subscribe({
         next: (data: Contrato) => {
 
@@ -111,12 +122,47 @@ export class ContratoComponent implements OnInit {
 
 
   gerarBoleto(codigo: string){
+    this.contratoService.getBoleto(codigo)
+      .subscribe({
 
-    let msg = "Selecionou o codigo : " + codigo;
-    this.snackbar.open(msg, "Fechar", { duration: 9000 })
+        next:(data: BoletoCripto) =>{
 
-  }
+          if (data != null){
+            this.boletoCripto = data;            
+            this.criptoItau = this.boletoCripto.boletoCripto
+            
+            this.submitItau();
 
+            //this.formCripto.submit();
+
+//            let msg = "Selecionou : " + this.criptoItau;
+//            this.snackbar.open(msg, "Fechar", { duration: 9000 });
+          }else{
+
+
+          }
+
+        }
+
+      })
+}
+       
+submitItau(){
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "https://shopline.itau.com.br/shopline/shopline.aspx";
+    form.target = "_blank"
+    form.style.display = 'none';
+//  form['Content-Type'] =  'application/x-www-form-urlencoded';
+//  form['Accept'] = 'application/json';
+//  above attributes are not valid
+    var nomeCampo = document.createElement("input");
+    nomeCampo.value=this.criptoItau;
+    nomeCampo.name='DC';
+    form.appendChild(nomeCampo);
+    document.body.appendChild(form);
+    form.submit();
+}
 
   /*
   getContratoinicio() {

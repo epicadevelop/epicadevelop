@@ -20,7 +20,7 @@ export class SessionService {
   }
 
 
-  static getContrato(): string {    
+  static getContratoAtual(): string {    
        return localStorage['contrato'] ;
   }
 

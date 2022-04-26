@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrincipalComponent } from './pages/compartilhado/principal/principal.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContratoComponent } from './pages/contrato/contrato.component';
+import { BoletoComponent } from './pages/boleto/boleto.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ContratoComponent } from './pages/contrato/contrato.component';
     AppComponent,
     LoginComponent,
     PrincipalComponent,
-    ContratoComponent
+    ContratoComponent,
+    BoletoComponent
   ],
   imports: [
     BrowserModule,    
