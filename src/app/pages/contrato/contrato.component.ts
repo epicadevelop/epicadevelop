@@ -16,41 +16,38 @@ import { BoletoCripto } from 'src/app/domain/model/boletoCripto';
 })
 
 export class ContratoComponent implements OnInit {
-
- 
+   
+  formCripto: HTMLFormElement = document.querySelector('#formItau')!;
   
-   formCripto: HTMLFormElement = document.querySelector('#formItau')!;
-  
-
-
   formcontrato!: FormGroup;
   session!: SessionService;
   contrato: Contrato = {} as Contrato;
   boletoCripto!: BoletoCripto;  
-
+  
   qtdeParcelaAtrazo: number = 0;
-  seqBoleto: number = 0;
+  seqBoleto:    number = 0;
   existeAcordo: number = 0;
-  criptoItau!: string;
-
-  //private nfeEmitir: NfeEmitir[] = [];
-
+  existeTaxa:   number = 0;
+  criptoItau!:  string;
+  
+//private nfeEmitir: NfeEmitir[] = [];
+  
   taxa: Taxa[] = [];
   acordo: Acordo[]=[];
-
+  
   colunas = ['codigo' , 'proposta', 'parcela', 'vencimento', 'valorParcela', 'nossoNumero', 'actions'];
-
+  
   dataSourceTaxa!: MatTableDataSource<Taxa>;
   dataSourceAcordo!: MatTableDataSource<Acordo>;
-
+  
   constructor(private contratoService: ContratoService,
     private snackbar: MatSnackBar
   ) { }
-
+  
   ngOnInit(): void {
     this.getContratoinicio();
   }
-  
+
   /*  
   fillUpData() {
     this.formcontrato = this.fb.group({
@@ -89,7 +86,6 @@ export class ContratoComponent implements OnInit {
   
   }
 
-
   getContratoinicio() {
 
     let proposta = SessionService.getContratoAtual();
@@ -106,6 +102,7 @@ export class ContratoComponent implements OnInit {
               this.dataSourceAcordo = new MatTableDataSource(this.acordo);
               this.qtdeParcelaAtrazo = this.contrato.qtdeParcAtrazo;
               this.existeAcordo =  this.acordo.length;
+              this.existeTaxa =  this.taxa.length;
 
           } else {
             let msg = "Contrato não localizado";
@@ -157,7 +154,7 @@ submitItau(){
 //  form['Accept'] = 'application/json';
 //  above attributes are not valid
     var nomeCampo = document.createElement("input");
-    nomeCampo.value=this.criptoItau;
+    nomeCampo.value = this.criptoItau;
     nomeCampo.name='DC';
     form.appendChild(nomeCampo);
     document.body.appendChild(form);
