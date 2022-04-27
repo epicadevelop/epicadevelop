@@ -11,6 +11,7 @@ const routes: Routes = [
       children:[
         {path:'', component: LoginComponent},
         {path:'login', component: LoginComponent},        
+        {path:'/epicaclientws/RetItau',component:LoginComponent},
         {path:'contrato', component: ContratoComponent, canActivate:[AuthGuard]}
       ]  
   },  
