@@ -39,14 +39,11 @@ export class LocalizacaoComponent implements OnInit {
   "cpf":"1231231212"
 }]
 
-
-
-
   validaLocalizacao: any={};
   existeLocaliza: number = 0;
 
 
-  colunas = ['id','contrato', 'titular',  'produto', 'quadra', 'setor', 'lote', 'complemento'];
+  colunas = ['contrato', 'titular',  'produto', 'quadra', 'setor', 'lote', 'complemento'];
   
  
    dataSourceLocalizacao!: MatTableDataSource<Localizacao>;
