@@ -38,3 +38,15 @@
     display: flex;
     justify-content: flex-end;   
   }
+
+  .disabled {
+    pointer-events: none;
+    background: rgb(250, 247, 247);      
+   }
+
+
+   input[readonly]{
+    background-color: #ffffff;
+  }
+
+  

@@ -13,6 +13,7 @@ import { PrincipalComponent } from './pages/compartilhado/principal/principal.co
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContratoComponent } from './pages/contrato/contrato.component';
 import { BoletoComponent } from './pages/boleto/boleto.component';
+import { LocalizacaoComponent } from './pages/localizacao/localizacao.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BoletoComponent } from './pages/boleto/boleto.component';
     LoginComponent,
     PrincipalComponent,
     ContratoComponent,
-    BoletoComponent
+    BoletoComponent,
+    LocalizacaoComponent
   ],
   imports: [
     BrowserModule,    

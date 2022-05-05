@@ -1,0 +1,83 @@
+<fieldset>
+    <legend>Entre com o CPF/CNPJ</legend>
+    <form #loginForm="ngForm" (ngSubmit)="autenticarApi()" novalidate>
+    <table>       
+        
+        <tr>
+            <td>
+                <mat-form-field>                    
+                    <input class="form-control" name="cpf" matInput [(ngModel)]="validaLocalizacao.cpf" required>
+                </mat-form-field>
+
+                <button [disabled]="!loginForm.form.valid" style="margin-left: 20px;" mat-raised-button mat-button color="primary">Perquisar</button>
+
+            </td>
+</tr>
+</table>
+    </form>
+</fieldset>
+
+<fieldset id="FieldSet" *ngIf="existeLocaliza > 0"> 
+
+    <legend style="color: blue;">Informação da Localização</legend>
+
+    <table mat-table [dataSource]="dataSourceLocalizacao" matSort class="mat-elevation-z1">
+        
+       
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Codigo</th>
+            <td mat-cell *matCellDef="let row">{{row.id}}</td>
+        </ng-container>              
+
+
+        <ng-container matColumnDef="contrato">
+            <th mat-header-cell *matHeaderCellDef>Contrato</th>
+            <td mat-cell *matCellDef="let row">{{row.contrato}}</td>
+        </ng-container>              
+
+        <ng-container matColumnDef="titular">
+            <th mat-header-cell *matHeaderCellDef>Titular</th>
+            <td mat-cell *matCellDef="let row">{{row.titular}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="produto">
+            <th mat-header-cell *matHeaderCellDef>Produto</th>
+            <td mat-cell *matCellDef="let row">{{row.produto}}</td>
+        </ng-container>              
+
+        <ng-container matColumnDef="quadra">
+            <th mat-header-cell *matHeaderCellDef>Quadra</th>
+            <td mat-cell *matCellDef="let row">{{row.quadra}}</td>
+        </ng-container>              
+
+
+
+        <ng-container matColumnDef="setor">
+            <th mat-header-cell *matHeaderCellDef>Setor</th>
+            <td mat-cell *matCellDef="let row">{{row.setor}}</td>
+        </ng-container>              
+
+
+
+        <ng-container matColumnDef="lote">
+            <th mat-header-cell *matHeaderCellDef>Lote</th>
+            <td mat-cell *matCellDef="let row">{{row.lote}}</td>
+        </ng-container>              
+
+
+
+        <ng-container matColumnDef="complemento">
+            <th mat-header-cell *matHeaderCellDef>Complemento</th>
+            <td mat-cell *matCellDef="let row">{{row.complemento}}</td>
+        </ng-container> 
+
+      
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    
+    </table>
+
+</fieldset>
+
+
+

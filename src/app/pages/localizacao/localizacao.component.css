@@ -1,0 +1,44 @@
+table {  
+    width: 100%;  
+  } 
+
+  th{
+    color: black; 
+    font-size: medium;
+    font-weight: bold;        
+    padding: 0px;
+  }
+  
+  td.mat-cell  {  
+    height: 50px;
+  }
+  
+  .mat-form-field {
+      margin-right: 15px;
+    }
+
+    
+fieldset
+{
+    border:2px solid rgb(0, 92, 128);
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;	
+    border-radius:8px;	
+    width:99%;
+    height: 0%;
+}
+
+legend{
+    color: blue;
+    font-size: larger;
+    font-weight: bold;
+}
+
+table { 
+    border-collapse: separate;
+    border-spacing: 0px;    
+}
+
+mat-form-field   {    
+    padding-right: 30px;   
+  }

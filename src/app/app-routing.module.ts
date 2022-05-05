@@ -4,6 +4,7 @@ import { PrincipalComponent } from './pages/compartilhado/principal/principal.co
 import { LoginComponent } from './pages/login/login.component';
 import { ContratoComponent } from './pages/contrato/contrato.component';
 import { AuthGuard } from './services/guards/auth.guard';
+import { LocalizacaoComponent } from './pages/localizacao/localizacao.component';
 
 const routes: Routes = [  
 
@@ -11,7 +12,8 @@ const routes: Routes = [
       children:[
         {path:'', component: LoginComponent},
         {path:'login', component: LoginComponent},        
-        {path:'/epicaclientws/RetItau',component:LoginComponent},
+        {path:'localizacao', component: LocalizacaoComponent},        
+        {path:'epicaclientws/RetItau',component:LoginComponent},
         {path:'contrato', component: ContratoComponent, canActivate:[AuthGuard]}
       ]  
   },  
@@ -23,5 +25,5 @@ const routes: Routes = [
   declarations:[]
 })
 
-export class AppRoutingModule {  
+export class AppRoutingModule {
 }

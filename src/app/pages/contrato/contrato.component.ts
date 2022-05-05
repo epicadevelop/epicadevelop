@@ -36,11 +36,14 @@ export class ContratoComponent implements OnInit {
   acordo: Acordo[]=[];
   
   colunas = ['codigo' , 'proposta', 'parcela', 'vencimento', 'valorParcela', 'nossoNumero', 'actions'];
+ 
+
   
   dataSourceTaxa!: MatTableDataSource<Taxa>;
   dataSourceAcordo!: MatTableDataSource<Acordo>;
   
-  constructor(private contratoService: ContratoService,
+  constructor(
+    private contratoService: ContratoService,
     private snackbar: MatSnackBar
   ) { }
   
@@ -69,7 +72,7 @@ export class ContratoComponent implements OnInit {
   */
   
   canSend(param: number) {
-  /*
+  
     let parcelaAtrazo = this.qtdeParcelaAtrazo;
     let result: boolean; 
     console.log('atrazo parcelas: ', parcelaAtrazo);
@@ -81,8 +84,7 @@ export class ContratoComponent implements OnInit {
    
     console.log('resultado :   ', result);
   
-    return result;
-    */
+    return result; 
   
   }
 
@@ -98,11 +100,16 @@ export class ContratoComponent implements OnInit {
               this.contrato = data;
               this.taxa = this.contrato.taxa;
               this.acordo = this.contrato.acordo;
-              this.dataSourceTaxa = new MatTableDataSource(this.taxa);
+              this.dataSourceTaxa = new MatTableDataSource( this.taxa);
               this.dataSourceAcordo = new MatTableDataSource(this.acordo);
               this.qtdeParcelaAtrazo = this.contrato.qtdeParcAtrazo;
               this.existeAcordo =  this.acordo.length;
               this.existeTaxa =  this.taxa.length;
+
+            console.log('contratos: ' ,   this.contrato);
+            console.log('taxa: ' ,   this.contrato.taxa);
+            console.log('acordo: ' ,   this.contrato.acordo);
+
 
           } else {
             let msg = "Contrato não localizado";

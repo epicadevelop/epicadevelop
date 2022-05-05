@@ -21,7 +21,7 @@ export class LoginService {
     private router: Router
   ) {}
 
-  logout() {    
+  logout() {
     localStorage.clear();
     this.router.navigate(['login']);
   }
@@ -29,12 +29,15 @@ export class LoginService {
   logar(usuario: IUsuario): Observable<any> {
 
     const httpOptions = {
-      headers: new HttpHeaders({ 
+      headers: new HttpHeaders({
          'Content-Type': 'application/json'
     })
-    };
+  };
 
     const encoded = btoa(usuario.contrato + ':' + usuario.cpfCnpj);        
+
+    console.log("usuario codificado: " , encoded);
+
     return this._http.post(this.baseApiUrl + this.PATH, encoded, httpOptions);     
 
   }

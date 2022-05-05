@@ -40,9 +40,12 @@ export class LoginComponent implements OnInit {
   }
 
 
-  get f() { return this.formLogin.controls; }
+  get f() {
+     return this.formLogin.controls;
+   }
 
-  altenticar() {
+
+  autenticar() {
 
     const login: IUsuario = this.formLogin.value
 
@@ -89,4 +92,6 @@ export class LoginComponent implements OnInit {
 
     }
   }
+
+  
 }
