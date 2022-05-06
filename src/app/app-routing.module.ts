@@ -10,7 +10,7 @@ const routes: Routes = [
 
   {path:'',component: PrincipalComponent,  
       children:[
-        {path:'', component: LoginComponent},
+        {path:'', component: LocalizacaoComponent},
         {path:'login', component: LoginComponent},        
         {path:'localizacao', component: LocalizacaoComponent},        
         {path:'epicaclientws/RetItau',component:LoginComponent},
