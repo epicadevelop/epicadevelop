@@ -53,4 +53,4 @@ jobs:
           app-name: 'epicaweb-api'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C7F07787E3E54FBE93387E83EEAAED4A }}
-          package: .
+          package: ./dist/epica-boleto-ui
